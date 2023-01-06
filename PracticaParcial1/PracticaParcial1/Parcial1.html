@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        h4 {
+            color: #0000cc;
+        }
+
+        body {
+            font-family: Verdana;
+        }
+
+        div {
+            padding: 10px;
+            margin-right: 0px;
+        }
+
+        label {
+            float: left;
+            width: 200px;
+        }
+
+        .botonsubmit {
+            position: relative;
+            float: left;
+            top: 20px;
+            left: 220px;
+        }
+
+        .mensaje {
+            color: #ff0000;
+            position:absolute;
+            float: left;
+            left:500px;
+            top: 160px;
+        }
+
+        .visible {
+            display: block;
+        }
+
+        .invisible {
+            display: none;
+        }
+    </style>
+    <script>
+        function jf_mensaje() {
+            document.getElementById("importeCuota").value = "";
+            document.getElementById("mensajeADV").className = "mensaje invisible";
+
+            if (document.getElementById("importePrestamo").value >= 50000) {
+                document.getElementById("mensajeADV").className = "mensaje visible";
+            }
+
+        }
+        function jf_calcular() {
+            var FloatTasa;
+            var intImporte;
+            var intCuotas;
+            var FloatImporteFinal;
+
+            if (document.getElementById("importePrestamo").value.length == 0) {
+                alert("Debe ingresar un importe.");
+            }
+            else {
+                FloatTasa = parseFloat(document.getElementById("tasa").value);
+                intImporte = parseInt(document.getElementById("importePrestamo").value);
+                intCuotas = parseInt(document.getElementById("cantcuotas").value);
+                FloatImporteFinal = parseFloat((intImporte + (intImporte * FloatTasa / 100)) / intCuotas);
+                document.getElementById("importeCuota").value = parseFloat(FloatImporteFinal).toFixed(2);
+
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h4>Desarrollo Prestamo</h4>
+
+    <form name="form1" >
+
+        <div><label>Apellido y Nombre</label><input type="text" size="40" value="Gines, Martinez Eva" disabled /></div>
+
+        <div><label>Tasa Nominal Anual</label><input type="text" size="10" id="tasa" value="32.5" disabled /></div>
+
+        <div><label>Importe Prestamo</label><input type="text" size="30" id="importePrestamo" onchange="jf_mensaje();"/><span id="mensajeADV" class="mensaje invisible">Sujeto a verificacion de garantias</span></div>
+
+        <div>
+            <label>Cantidad de Cuotas</label>
+            <select id="cantcuotas">
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="9">9</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+
+        <div><label>Importe Cuota</label><input type="text" id="importeCuota" size="30" disabled/></div>
+        
+        <input class="botonsubmit" type="submit" value="Calcular" onclick="return jf_calcular();"/>
+    </form>
+
+
+</body>
+</html>

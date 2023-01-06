@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            margin:0px;
+            font-family: Verdana;
+        }
+        .box1 {
+            position: static;
+            width: 150px;
+            height: 50px;
+            border: 5px solid #01A9DB;
+            background-color: #58D3F7;
+        }
+
+        .box2 {
+            position: relative;
+            top:20px;
+            left:20px;
+
+            width: 50px;
+            height: 50px;
+            border: 5px solid #8000ff;
+            background-color: #FF33FF;
+        }
+
+        .box3 {
+            position: absolute;
+            top: 200px;
+            left: 300px;
+
+            width: 300px;
+            height: 200px;
+            border: 5px solid #8000ff;
+            background-color: #FF33FF;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">Caja 1</div>
+    <div class="box3">
+        <div class="box2">Caja 2</div>
+    </div>
+</body>
+</html>

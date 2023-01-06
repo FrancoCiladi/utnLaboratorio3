@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .visible{
+            display: inline-block;
+        }
+        .invisible{
+            display:none;
+        }
+        body {
+            font-family: Verdana;
+        }
+        li {
+            padding: 10px;  
+        }
+        label{
+            float:left;
+            width:250px;
+        }
+        ul {
+            display:inline-block;
+            list-style: none;
+        }
+        .textbox {
+            margin-right: 15px;
+        }
+    </style>
+    <script>
+        function jf_calcular() {
+            var cantChk = 0;
+            var total = 0;
+
+            for (i = 1; i <= 3; i++) {
+                if (document.getElementById("chk" + i).checked) {
+                    cantChk = cantChk + 1;
+                    total = total + parseInt(document.getElementById("chk" + i).value);
+                }
+                if (cantChk == 3) {
+                    total = (total * 0.85);
+                    document.getElementById("mensaje").className = "visible"
+                }
+            }
+            document.getElementById("costoTotal").value = total;
+        }
+    </script>
+</head>
+<body>
+
+        <ul>
+            <li><label>Cambio de Aceite</label><input id="chk1" type="checkbox" value="850" onchange="jf_calcular();" /> - 850$</li>
+            <li><label>Cambio Filtro Combustible</label><input id="chk2" type="checkbox" value="1150" onchange="jf_calcular();" /> - 1.150$</li>
+            <li><label>Cambio de Correa</label><input id="chk3" type="checkbox" value="4300" onchange="jf_calcular();" /> - 4.300$</li>
+            <li><label>Costo Service</label><input class="textbox" type="text" id="costoTotal" size="6" disabled /><span id="mensaje" class="invisible">15% descuento</span></li>
+        </ul>
+  
+</body>
+</html>

@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="CSS/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <script>
+        function jf_validar() {
+
+            if (document.getElementById("apellido").value.length == 0) {
+                alert("Debe completar el apellido.");
+                return false;
+            }
+            if (document.getElementById("nombre").value.length == 0) {
+                alert("Debe completar el nombre.");
+                return false;
+            }
+            if (document.getElementById("opcSexo1").checked == false && document.getElementById("opcSexo2").checked == false) {
+                alert("Debe seleccionar un sexo.");
+                return false;
+            }
+            if (document.getElementById("DNIselec").selectedIndex == 0) {
+                alert("Seleccione el tipo de documento");
+                return false;
+            }
+            if (document.getElementById("numDoc").value.length == 0) {
+                alert("Debe completar el numero de documento.")
+                return false;
+            }
+            if (document.getElementById("chkMail").checked == true && document.getElementById("txtMail").value.length == 0) {
+                alert("Debe completar el Mail");
+                return false;
+            }
+            if (document.getElementById("condfis1").checked == false && document.getElementById("condfis2").checked == false && document.getElementById("condfis3").checked == false && document.getElementById("condfis4").checked == false) {
+                alert("Debe seleccionar una condicion fiscal.");
+                return false;
+            }
+            if (document.getElementById("modopagoSelec").selectedIndex == 0) {
+                alert("Debe seleccionar un modo de pago.");
+                return false;
+            }
+            return true;
+        }
+
+        function jf_habilitarControles() {
+
+            if (document.getElementById("DNIselec").selectedIndex == 0) {
+                document.getElementById("numDoc").disabled = true;
+            }
+            else {
+                document.getElementById("numDoc").disabled = false;
+            }
+
+            if (document.getElementById("chkMail").checked == true) {
+                document.getElementById("txtMail").disabled = false;
+            }
+            else {
+                document.getElementById("txtMail").disabled = true;
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12 col-md-4 offset-1 mt-4">
+                <div class="alert alert-info">Formulario de alta: Ciladi, Franco</div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-12 col-md-4 offset-1 mb-4">
+                <div class="card">
+
+                    <div class="card-header">
+                        <h5 align="center">Formulario Datos</h5>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-4 col-md-3 mb-2">Apellido</div>
+                            <div class="col-8 col-md-8 mb-2"><input type="text" class="form-control form-control-sm" id="apellido"/></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 col-md-3 mb-2">Nombre</div>
+                            <div class="col-8 col-md-8 mb-2"><input type="text" class="form-control form-control-sm" id="nombre"/></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 col-md-3 mb-2">Sexo</div>
+                            <div class="col-3 col-md-3"><input type="radio" name="sexo" class="mr-1" value="F" id="opcSexo1">F</div>
+                            <div class="col-3 col-md-3"><input type="radio" name="sexo" class="mr-1" value="M" id="opcSexo2">M</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 col-md-3 mb-2 mr-3">DNI</div>
+                            <select class="col-6 col-md-3 mb-3" name="Documento" id="DNIselec" onchange="jf_habilitarControles();">
+                                <option value="0">Seleccione...</option>
+                                <option value="DNI">DNI</option>
+                                <option value="PAS">PAS</option>
+                                <option value="OTR">Otros</option>
+                            </select>
+                            <div class="col-6 col-md-3 mb-3"><input type="text" name="numerodocumento" id="numDoc" disabled/></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 col-md-3 mb-2">Fecha Nac.</div>
+                            <div class="col-5 col-md-4 mb-2"><input type="date" name="fechanac" /></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 col-md-3 mb-3">Mail</div>
+                            <div class="col-6 col-md-3 mb-3"><input type="checkbox" class="mr-2" name="recibirmail" id="chkMail" onclick="jf_habilitarControles();"/>Recibir Mail</div>
+                            <div class="col-11 col-md-5 mb-3"><input type="text" class="form-control form-control-sm" id="txtMail" disabled /></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-10 col-md-3 mb-2">Condicion Fiscal</div>
+                            <ul style="list-style-type:none">
+                                <li><input type="radio" class="mr-2" name="condfis" value="RI" id="condfis1"/>R.I.</li>
+                                <li><input type="radio" class="mr-2" name="condfis" value="MON" id="condfis2"/>Monotributista</li>
+                                <li><input type="radio" class="mr-2" name="condfis" value="CF" id="condfis3"/>C.F.</li>
+                                <li><input type="radio" class="mr-2" name="condfis" value="EXE" id="condfis4"/>Exento</li>
+                            </ul>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-10 col-md-3 mb-2">Transporte</div>
+                            <ul style="list-style-type:none">
+                                <li><input type="checkbox" class="mr-2" name="transporte" value="AUT" />Auto</li>
+                                <li><input type="checkbox" class="mr-2" name="transporte" value="MOT" />Moto</li>
+                                <li><input type="checkbox" class="mr-2" name="transporte" value="BIC" />Bicicleta</li>
+                                <li><input type="checkbox" class="mr-2" name="transporte" value="PUB" />Publico</li>
+                            </ul>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-10 col-md-4 mb-3">Modo de Pago</div>
+                            <select class="col-10 col-md-5 mb-3 ml-3" name="modopago" multiple id="modopagoSelec">
+                                <option value="0" selected>Seleccione...</option>
+                                <option value="tarjcred">Tarjeta de Credito</option>
+                                <option value="debCC">Debito Cuenta Bancaria</option>
+                                <option value="caja">Caja</option>
+                                <option value="homebank">Home Banking</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-10 col-md-4 mb-2">Observaciones</div>
+                            <textarea name="observaciones" class="col-11 col-md-7" rows="4" ></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-1 offset-md-4 offset-2"></div>
+                            <div class="col-4 mt-4"><input type="button" class="btn btn-primary btn-sm" value="Registrar" onclick="jf_validar();"/></div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</body>
+</html>

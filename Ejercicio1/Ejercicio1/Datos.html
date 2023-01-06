@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="CSS/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <script>
+        function jf_seleccionar(argumento) {
+            if (argumento == 'A') {
+                document.getElementById("detalle").className = "d-none";
+                document.getElementById("afiliado").className = "d-block";
+
+                document.getElementById("tab-detalle").className = "nav-link";
+                document.getElementById("tab-afiliado").className = "nav-link-active";
+            }
+            else {
+                document.getElementById("detalle").className = "d-block";
+                document.getElementById("afiliado").className = "d-none";
+
+                document.getElementById("tab-detalle").className = "nav-link-active";
+                document.getElementById("tab-afiliado").className = "nav-link";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row mt-2">
+            <div class="col-12 col-md-6">
+                <div class="card" >
+                    <div class="card-header">
+                        
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item"><a class="nav-link" id="tab-afiliado" href="#" onclick="jf_seleccionar('A');">Afiliado</a></li>
+                            <li class="nav-item"><a class="nav-link" id="tab-detalle" href="#" onclick="jf_seleccionar('D');">Detalle</a></li>
+                        </ul>
+
+                    </div>
+
+                    <div class="card-body">
+                        <div id="afiliado" class="d-block">afiliado</div>
+                        <div id="detalle" class="d-none">detalle</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

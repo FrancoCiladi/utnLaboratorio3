@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            font-family: Verdana;
+        }
+        form div {
+            padding: 5px;
+        }
+
+        label {
+            float: left;
+            width: 200px;
+        }
+
+        .total {
+            background-color: #EFEFEF;
+            border: inset;
+        }
+        .MensajeError {
+            color:#FF0000;
+        }
+        .visible{
+            display:block;
+        }
+        .invisible {
+            display:none;
+        }
+        .cajaPrincipalEj5 {
+            background-color: #ffcc00;
+            width:50%;
+            height:150px;  
+        }
+        .cajaPrincipalEj5 b {
+            color: #ffffff;
+            margin-left:100px;
+            margin-bottom:0px;
+        }
+        .cajaSecundariaEj5 {
+            border: solid #ffffff;
+            padding: 10px;
+            position: relative;
+            top:20px;
+            float:left;
+            left:60px;
+            margin-left: 30px;
+        }
+        .botontesting{
+            position:relative;
+            top:10px;
+            margin-bottom:20px;
+        }
+        table{
+            font-family:Verdana;
+        }
+        tr {
+            background-color: #d9d9d9;
+        }
+        .oscuro {
+            background-color: #999999;
+        }
+        .op1{
+            background-color: #FFFF4d;
+            float:left;
+            margin:15px;
+        }
+        .opsel {
+            background-color: #FF99ff;
+            float: left;
+            margin: 15px;
+        }
+    </style>
+
+    <script>
+
+        function jf_calcular()
+        {
+            var importe = 0;
+            var total = 0;
+            var cantidad = 0;
+
+
+            importe = document.form1.importe.value;
+            cantidad = document.form1.cantidad.value;
+
+            if (document.form1.descuento.checked) {
+                total = (importe * cantidad) * .85;
+            }
+            else {
+                total = (importe * cantidad);
+            }
+
+
+            document.getElementById("total").value = total;
+
+            if (total > 10000) {
+                document.getElementById("mensaje").innerHTML = "Monto Elevado."
+            }
+
+        }
+
+        function jf_ocultarnombre()
+        {
+            if (document.form2.tipopersona.selectedIndex == 1) {
+                document.getElementById("nombre").className = "visible";
+                document.getElementById("apellido").innerHTML = "Apellido";
+            }
+            if (document.form2.tipopersona.selectedIndex == 2) {
+                document.getElementById("nombre").className = "invisible";
+                document.getElementById("apellido").innerHTML = "Razon Social";
+            }
+            
+        }
+        function jf_seleccion(arg) {
+            document.formequipaje.seleccion.value = arg;
+            document.getElementById("img1" + arg).className="opsel"
+        }
+        function jf_seleccionarTodo() {
+            var bolChequeado;
+
+            bolChequeado = document.getElementById("selTodo").checked;
+
+            for (var i = 1; i <= 4; i++) {
+                document.getElementById("chk" + i).checked = bolChequeado;
+            }
+
+            jf_calcularej6();
+        }
+        function jf_calcularej6(){
+            var bolChequeado;
+            var intImporte;
+            var intTotal = 0;
+
+
+            for (var i = 1; i <= 4; i++) {
+                bolChequeado = document.getElementById("chk" + i).checked;
+                if (bolChequeado) {
+                    intImporte = parseFloat(document.getElementById("importe" + i).innerHTML);
+                    intTotal = intTotal + intImporte;
+                }
+            }
+
+            document.getElementById("totalej6").innerHTML = intTotal.toFixed(2);
+        }
+        function jf_calcularEj7() {
+            var intImporte;
+            var intCantidad;
+            var intPrecio;
+            var intTotal = 0;
+
+            for (var i = 1; i <= 4; i++) {
+                intImporte = document.getElementById("Importe" + i).innerHTML;
+                intCantidad = document.getElementById("cant" + i).value;
+                intPrecio = intImporte * intCantidad;
+                document.getElementById("precio" + i).innerHTML = intPrecio;
+                intTotal = intTotal + intPrecio;
+            }
+            document.getElementById("totalej7").innerHTML = intTotal;
+        }
+    </script>
+</head>
+<body>
+    <h4>Ejercicio 1</h4>
+
+    <form name="form1">
+
+        <div><label>Importe Unitario </label><input type="text" name="importe" size="10" onchange="jf_calcular();" /></div>
+
+        <div><label>Cantidad</label><input type="text" name="cantidad" size="10" onchange="jf_calcular();" /></div>
+
+        <div><label>Descuento</label><input type="checkbox" name="descuento" onchange="jf_calcular();" /></div>
+
+        <div><label>Total</label><input id="total" type="tel" name="total" disabled="disabled" /><span id="mensaje" class="MensajeError"></span></div>
+
+    </form>
+
+    <br />
+    <hr />
+
+    <h4>Ejercicio 4</h4>
+
+    <h5>Ingreso Cliente</h5>
+
+    <form name="form2">
+
+        <div>
+            <label>Tipo Persona</label>
+            <select name="tipopersona" onclick="jf_ocultarnombre();">
+                <option value="0">Seleccione...</option>
+                <option value="FIS">Fisica</option>
+                <option value="JUR">Juridica</option>
+            </select>
+        </div>
+
+        <div><label id="apellido">Apellido</label><input type="text" name="apellido" maxlength="30" size="40" /></div>
+
+        <div id="nombre" class="visible"><label>Nombre</label><input type="text" name="nombre" maxlength="30" size="40" /></div>
+
+    </form>
+
+    <br />
+    <hr />
+
+    <h4>Ejercicio 5</h4>
+
+    <div class="cajaPrincipalEj5">
+        <div><b>Seleccione el equipaje</b></div>
+        <div class="cajaSecundariaEj5"><input id="caja9kg" type="hidden" value="EQ9" /><a href="#"><img src="9kg.jpg" onclick="jf_seleccionequipaje9kg();" /></a></div>
+        <div class="cajaSecundariaEj5"><input id="caja12kg" type="hidden" value="EQ12" /><a href="#"><img src="12kg.jpg" onclick="jf_seleccionequipaje12kg();" /></a></div>
+        <div class="cajaSecundariaEj5"><input id="caja20kg" type="hidden" value="EQ20" /><a href="#"><img src="20kg.jpg" onclick="jf_seleccionequipaje20kg();" /></a></div>
+    </div>
+
+    <input class="botontesting" type="submit" value="Testing" onclick="jf_mostrarequipaje();" />
+
+    <br />
+    <hr />
+
+    <h4>Ejercicio 6</h4>
+
+        <table border="0" width="700" cellpadding="10">
+            <tr><td>VEHICULO</td><td colspan="2">VW AMAROK 2.0 TDI TRENDLINE</td></tr>
+            <tr><td colspan="3">Vehiculo comprado en concesionaria<input type="checkbox" name="concesionaria" style="margin-left:50px;" /></td></tr>
+            <tr class="oscuro"><td>sel<input id="selTodo" type="checkbox" onclick="jf_seleccionarTodo();"style="margin-left:50px;"/></td><td>Descripcion</td><td align="center">Importe</td></tr>
+            <tr><td><input id="chk1" type="checkbox" onclick="jf_calcularej6();"/><td>Mantenimiento-Control 15.000km</td><td id="importe1" align="right">8899.00</td></tr>
+            <tr><td><input id="chk2" type="checkbox" onclick="jf_calcularej6();"/></td><td>Par Escobillas Bosch Aerotwin</td><td id="importe2" align="right">1064.80</td></tr>
+            <tr><td><input id="chk3" type="checkbox" onclick="jf_calcularej6();"/></td><td>Alineacion y Balanceo</td><td id="importe3" align="right">1245.00</td></tr>
+            <tr><td><input id="chk4" type="checkbox" onclick="jf_calcularej6();"/></td><td>Labado Interior, Exterior, Motor</td><td id="importe4" align="right">650.00</td></tr>
+            <tr class="oscuro"><td colspan="2"></td><td id="totalej6" align="right">0.00</td></tr>
+        </table>
+
+    <br />
+    <hr />
+
+    <h4>Ejercicio 5 Profe</h4>
+
+    <div class="op1">
+        <img src="9kg.jpg" id="img1" onclick="jf_seleccion('1');" />
+    </div>
+    <div class="op1">
+        <img src="12kg.jpg" id="img2 " onclick="jf_seleccion('2');" />
+    </div>
+    <div class="op1">
+        <img src="20kg.jpg" id="img3" onclick="jf_seleccion('3');" />
+    </div>
+
+    <form name="formequipaje" action="pagina.php" method="get">
+        <input type="hidden" name="seleccion" />
+        <input type="submit" />
+    </form>
+
+    <br />
+    <hr />
+
+    <h4>Ejercicio 7</h4>
+
+    <table border="1" width="700" cellpadding="10">
+        <tr><td>Importe Unitario</td><td>Cant.</td><td>Precio Final (Sin IVA)</td></tr>
+        <tr><td id="Importe1">185.54</td><td><input type="text" id="cant1" onchange="jf_calcularEj7();"/></td><td id="precio1">0.00</td></tr>
+        <tr><td id="Importe2">254.99</td><td><input type="text" id="cant2" onchange="jf_calcularEj7();"/></td><td id="precio2">0.00</td></tr>
+        <tr><td id="Importe3">22.30</td><td><input type="text" id="cant3" onchange="jf_calcularEj7();"/></td><td id="precio3">0.00</td></tr>
+        <tr><td id="Importe4">24.60</td><td><input type="text" id="cant4" onchange="jf_calcularEj7();"/></td><td id="precio4">0.00</td></tr>
+        <tr><td colspan="2"><b>Total</b></td><td id="totalej7">0.00</td></tr>
+    </table>
+</body>
+</html>

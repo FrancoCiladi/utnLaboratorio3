@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            font-family: Verdana;
+        }
+
+        form div {
+            padding: 5px;
+        }
+
+        label {
+            float: left;
+            width: 200px;
+        }
+        .textmail {
+            background-color: #EFEFEF;
+            border:inset;
+        }
+        .botonsubmit{
+           position:relative;
+           left:250px;
+        }
+        ul{
+            display:inline-block;
+        }
+
+    </style>
+    <script>
+
+        function jf_validar(ar_form) {
+            if (ar_form.apellido.value.length == 0) {
+                alert("Complete el apellido");
+                return false;
+            }
+            if (ar_form.nombre.value.length == 0) {
+                alert("Complete el nombre");
+                return false;
+            }
+            if (ar_form.tipodoc.selectedIndex == 0) {
+                alert("Seleccione el tipo de documento");
+                return false;
+            }
+            if (isNaN(ar_form.dni.value)) {
+                alert("Complete el DNI");
+                return false;
+            }
+            if (ar_form.sexo[0].checked == false && ar_form.sexo[1].checked == false) {
+                alert("Seleccione un sexo");
+                return false;
+            }
+            if (ar_form.condfis[0].checked == false && ar_form.condfis[1].checked == false && ar_form.condfis[2].checked == false && ar_form.condfis[3].checked == false) {
+                alert("Seleccione una condicion fiscal");
+                return false;
+            }
+
+            return true;
+        }
+        function jf_solonumeros(arg) {
+            var letra;
+
+            letra = arg.keyCode;
+            console.log(letra)
+            if (letra >= 48 && letra <= 57) {
+                return true;
+            }
+            return false;
+        }
+    </script>
+</head>
+<body>
+
+    <div><b>Ingreso Cliente</b></div>
+
+    <br />
+
+    <form name="form1" action="grabar_datos.asp" method="post" onsubmit="return jf_validar(this)">
+
+        <div><label>Apellido</label><input type="text" name="apellido" maxlength="30" size="40" tabindex="1" /></div>
+        <div><label>Nombre</label><input type="text" name="nombre" maxlength="30" size="40" tabindex="2" /></div>
+
+        <div><label>DNI</label>
+             <select name="tipodoc" tabindex="3">
+                 <option value="0">Seleccione...</option>
+                 <option value="DNI">DNI</option>
+                 <option value="PAS">PAS</option>
+                 <option value="OTR">Otros</option>
+             </select>
+            <input type="text" name="dni" maxlength="30" size="5" tabindex="4" onkeydown="return jf_solonumeros(event)"/>
+        </div>
+
+        <div><label>Sexo</label>
+            <input type="radio" name="sexo" value="F" tabindex="5"/>F
+            <input type="radio" name="sexo" value="M" tabindex="6"/>M
+        </div>
+
+        <div><label>Fecha Nacimiento</label>
+             <input type="date" name="fechanac" tabindex="7" />
+        </div>
+
+        <div><label>Mail</label>
+        
+            <input type="checkbox" name="recibirmail" tabindex="8"/>Recibir Mail
+            <input class="textmail" type="text" name="mail" maxlength="30" size="40" tabindex="9" readonly/>
+       
+        </div>
+
+        <div><label>Condicion Fiscal</label>
+             <ul style="list-style-type:none">
+                 <li><input type="radio" name="condfis" value="RI" tabindex="10" />R.I.</li>
+                 <li><input type="radio" name="condfis" value="MON" tabindex="11" />Monotributista</li>
+                 <li><input type="radio" name="condfis" value="CF" tabindex="12" />C.F.</li>
+                 <li><input type="radio" name="condfis" value="EXE" tabindex="13" />Exento</li>
+             </ul>
+        </div>
+
+        <div><label>Transporte</label>
+             <ul style="list-style-type:none">
+                 <li><input type="checkbox" name="transporte" value="AUT" tabindex="14" />Auto</li>
+                 <li><input type="checkbox" name="transporte" value="MOT" tabindex="15" />Moto</li>
+                 <li><input type="checkbox" name="transporte" value="BIC" tabindex="16" />Bicicleta</li>
+                 <li><input type="checkbox" name="transporte" value="PUB" tabindex="17" />Publico</li>
+             </ul>
+        </div>
+
+        <div><label>Modo de Pago</label>
+             <select name="modopago" multiple>
+                 <option value="TarjCred" tabindex="18" >Tarjeta de Credito</option>
+                 <option value="DebCuentBanc" tabindex="19" >Debito Cuenta Bancaria</option>
+                 <option value="Caja" tabindex="20" >Caja</option>
+                 <option value="HomeBanking" tabindex="21" >Home Banking</option>
+             </select>
+        </div>
+
+        <div><label>Observaciones</label>
+            <textarea name="observaciones" cols="50" rows="7" tabindex="22" ></textarea>
+        </div>
+        <br />
+
+        <input class="botonsubmit" type="submit" />
+    </form>
+</body>
+</html>

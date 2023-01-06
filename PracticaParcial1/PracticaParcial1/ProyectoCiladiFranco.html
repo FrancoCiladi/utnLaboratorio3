@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .libre {
+            background-color: #8AB6FF;
+        }
+        .reservado {
+            background-color: #337DFF;
+        }
+        .reservadoPropio {
+            background-color: #ff9900;
+        }
+        body{
+            font-family:Verdana;
+        }
+        form div{
+            padding:10px;
+        }
+        form label{
+            float:left;
+            width:250px;
+        }
+        header {
+            position: absolute;
+            width: 100%;
+            height: 150px;
+            top: 0px;
+            left: 0px;
+            background-color: #002699;
+        }
+        .separacion {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            top: 150px;
+            left: 0px;
+            background-color: #ffffb3;
+            border: 1px solid #000000;
+        }
+        .cajaForm {
+            border: 2px solid #000000;
+            border-radius: 10px;
+            position: absolute;
+            top: 180px;
+            left: 20px;
+            width: 90%;
+            height: 250px;
+
+        }
+        .cajaAsientos {
+            border: 2px solid #000000;
+            border-radius: 10px;
+            position: absolute;
+            top: 450px;
+            left: 20px;
+            width: 90%;
+            height: 400px;
+        }
+        .botonsubmit{
+            position: relative;
+            left: 150px;
+            top: 30px;
+        }
+        .tablaPosicion{
+            position: relative;
+            top:50px;
+            left:50px;
+        }
+        .formPosicion{
+            position: relative;
+            left: 50px;
+            top: 10px;
+        }
+        img {
+            width: 250px;
+            height: 100px;
+            border-radius: 10px;
+            position: relative;
+            top: 25px;
+            left: 50px;
+        }
+        .colorTextbox {
+            background-color: #cccccc;
+        }
+    </style>
+    <script>
+        var cantAsientosPropios = 0;
+
+        function jf_Validar(ARasiento) {
+            var asiento;
+            
+
+            asiento = document.getElementById(ARasiento);
+
+            if (asiento.className == "reservado") {
+                alert("El asiento seleccionado ya se encuentra reservado.");
+                return;
+            }
+            if (asiento.className == "libre") {
+                if (cantAsientosPropios >= 3) {
+                    alert("Llego al limite de asientos seleccionados.");
+                }
+                else {
+                       asiento.className = "reservadoPropio";
+                    cantAsientosPropios = cantAsientosPropios + 1;
+
+                }
+            }
+            else {
+                asiento.className = "libre";
+                cantAsientosPropios = cantAsientosPropios - 1;
+            }
+
+        }
+        
+        function jf_CargarDatos() {
+
+            var cantCadena = 0;
+            if (cantAsientosPropios != 3) {
+                alert("Debe elegir " + (3 - cantAsientosPropios) + " asientos");
+                return false;
+            }
+            else {
+                document.getElementById("asientosReservados").value = "";
+                for (i = 1; i <= 11; i++) {
+                    if (document.getElementById(i + "A").className == "reservadoPropio") {
+                        cantCadena = cantCadena + 1;
+                        if (cantCadena == 3) {
+                            document.getElementById("asientosReservados").value = document.getElementById("asientosReservados").value + document.getElementById(i + "A").innerHTML;
+                        }
+                        else {
+                            document.getElementById("asientosReservados").value = document.getElementById("asientosReservados").value + document.getElementById(i + "A").innerHTML + ",";
+                        }
+                    }
+                }
+                for (i = 1; i <= 11; i++) {
+                    if (document.getElementById(i + "B").className == "reservadoPropio") {
+                        cantCadena = cantCadena + 1;
+                        if (cantCadena == 3) {
+                            document.getElementById("asientosReservados").value = document.getElementById("asientosReservados").value + document.getElementById(i + "B").innerHTML;
+                        }
+                        else {
+                            document.getElementById("asientosReservados").value = document.getElementById("asientosReservados").value + document.getElementById(i + "B").innerHTML + ",";
+                        }
+                    }
+                }
+                for (i = 1; i <= 11; i++) {
+                    if (document.getElementById(i + "C").className == "reservadoPropio") {
+                        cantCadena = cantCadena + 1;
+                        if (cantCadena == 3) {
+                            document.getElementById("asientosReservados").value = document.getElementById("asientosReservados").value + document.getElementById(i + "C").innerHTML;
+                        }
+                        else {
+                            document.getElementById("asientosReservados").value = document.getElementById("asientosReservados").value + document.getElementById(i + "C").innerHTML + ",";
+                        }
+                    }
+                }
+                for (i = 1; i <= 11; i++) {
+                    if (document.getElementById(i + "D").className == "reservadoPropio") {
+                        cantCadena = cantCadena + 1;
+                        if (cantCadena == 3) {
+                            document.getElementById("asientosReservados").value = document.getElementById("asientosReservados").value + document.getElementById(i + "D").innerHTML;
+                        }
+                        else {
+                            document.getElementById("asientosReservados").value = document.getElementById("asientosReservados").value + document.getElementById(i + "D").innerHTML + ",";
+                        }
+                    }
+                }
+                return true;
+            }
+                
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div><img src="logo.png"/></div>
+    </header>
+
+    <div class="separacion"></div>
+
+    <div class="cajaForm">
+        <form class="formPosicion" name="form1" action="_recibeFormulario.asp" method="post" onsubmit="return jf_CargarDatos()">
+            <div><label>Apellido y Nombre</label><input class="colorTextbox" type="text" name="ApyNom" value="Ciladi, Franco" readonly /></div>
+            <div><label>Destino</label><input type="text" class="colorTextbox" value="Cordoba, Argentina (COR)" name="destino" readonly /></div>
+            <div><label>Hora Partida</label><input class="colorTextbox" type="text" value="9:25 am" name="horaPartida" readonly /></div>
+            <div><label>Cantidad Pasajeros</label><input class="colorTextbox" type="text" value="3" name="cantPasajeros" readonly /></div>
+            <input type="hidden" id="asientosReservados" name="asientos" />
+            <input type="submit" value="Enviar Consulta" class="botonsubmit"/>
+        </form>
+    </div>
+
+    <div class="cajaAsientos">
+        <table class="tablaPosicion" border="1" cellpadding="15">
+            <tr>
+                <td id="1A" class="libre" onclick="jf_Validar('1A');">1A</td>
+                <td id="2A" class="reservado" onclick="jf_Validar('2A');">2A</td>
+                <td id="3A" class="reservado" onclick="jf_Validar('3A');">3A</td>
+                <td id="4A" class="reservado" onclick="jf_Validar('4A');">4A</td>
+                <td id="5A" class="reservado" onclick="jf_Validar('5A');">5A</td>
+                <td id="6A" class="reservado" onclick="jf_Validar('6A');">6A</td>
+                <td id="7A" class="libre" onclick="jf_Validar('7A');">7A</td>
+                <td id="8A" class="reservado" onclick="jf_Validar('8A');">8A</td>
+                <td id="9A" class="libre" onclick="jf_Validar('9A');">9A</td>
+                <td id="10A" class="libre" onclick="jf_Validar('10A');">10A</td>
+                <td id="11A" class="reservado" onclick="jf_Validar('11A');">11A</td>
+            </tr>
+            <tr class="spaceUnder">
+                <td id="1B" class="libre" onclick="jf_Validar('1B');">1B</td>
+                <td id="2B" class="reservado" onclick="jf_Validar('2B');">2B</td>
+                <td id="3B" class="reservado" onclick="jf_Validar('3B');">3B</td>
+                <td id="4B" class="reservado" onclick="jf_Validar('4B');">4B</td>
+                <td id="5B" class="libre" onclick="jf_Validar('5B');">5B</td>
+                <td id="6B" class="libre" onclick="jf_Validar('6B');">6B</td>
+                <td id="7B" class="libre" onclick="jf_Validar('7B');">7B</td>
+                <td id="8B" class="reservado" onclick="jf_Validar('8B');">8B</td>
+                <td id="9B" class="reservado" onclick="jf_Validar('9B');">9B</td>
+                <td id="10B" class="libre" onclick="jf_Validar('10B');">10B</td>
+                <td id="11B" class="reservado" onclick="jf_Validar('11B');">11B</td>
+            </tr>
+            <tr>
+                <td id="1C" class="reservado" onclick="jf_Validar('1C');">1C</td>
+                <td id="2C" class="reservado" onclick="jf_Validar('22');">2C</td>
+                <td id="3C" class="reservado" onclick="jf_Validar('3C');">3C</td>
+                <td id="4C" class="reservado" onclick="jf_Validar('4C');">4C</td>
+                <td id="5C" class="libre" onclick="jf_Validar('5C');">5C</td>
+                <td id="6C" class="reservado" onclick="jf_Validar('6C');">6C</td>
+                <td id="7C" class="reservado" onclick="jf_Validar('7C');">7C</td>
+                <td id="8C" class="reservado" onclick="jf_Validar('8C');">8C</td>
+                <td id="9C" class="reservado" onclick="jf_Validar('9C');">9C</td>
+                <td id="10C" class="libre" onclick="jf_Validar('10C');">10C</td>
+                <td id="11C" class="reservado" onclick="jf_Validar('11C');">11C</td>
+            </tr>
+            <tr>
+                <td id="1D" class="reservado" onclick="jf_Validar('1D');">1D</td>
+                <td id="2D" class="reservado" onclick="jf_Validar('2D');">2D</td>
+                <td id="3D" class="reservado" onclick="jf_Validar('3D');">3D</td>
+                <td id="4D" class="libre" onclick="jf_Validar('4D');">4D</td>
+                <td id="5D" class="reservado" onclick="jf_Validar('5D');">5D</td>
+                <td id="6D" class="reservado" onclick="jf_Validar('6D');">6D</td>
+                <td id="7D" class="reservado" onclick="jf_Validar('7D');">7D</td>
+                <td id="8D" class="reservado" onclick="jf_Validar('8D');">8D</td>
+                <td id="9D" class="reservado" onclick="jf_Validar('9D');">9D</td>
+                <td id="10D" class="libre" onclick="jf_Validar('10D');">10D</td>
+                <td id="11D" class="reservado" onclick="jf_Validar('11D');">11D</td>
+            </tr>
+        </table>
+    </div>
+    
+
+</body>
+</html>

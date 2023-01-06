@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            font-family: Verdana;
+        }
+
+        div {
+            padding: 10px;
+        }
+
+        label {
+            float: left;
+            width: 200px;
+        }
+
+        ul {
+            display: inline-block;
+        }
+
+        .textbox {
+            margin-right: 15px;
+        }
+    </style>
+    <script>
+        function jf_calcular() {
+            var total = 0;
+            var cantChequeado = 0;
+
+            for (i = 1; i <= 5; i++) {
+                if (document.getElementById("chk" + i).checked) {
+                    cantChequeado = cantChequeado + 1;
+                    total = total + 450;
+                }
+
+            }
+            if (cantChequeado >= 3) {
+                total = parseFloat(total - (total * 0.15));
+                alert(total);
+            }
+            document.getElementById("importeCuota").value = total.toFixed(1);
+        }
+    </script>
+    
+</head>
+<body>
+    <div><label>Seleccione los cursos</label>
+         <ul>
+             <li><input type="checkbox" id="chk1" onchange="jf_calcular();"/>Ingles Nivel 1 Inicial</li>
+             <li><input type="checkbox" id="chk2" onchange="jf_calcular();"/>Ingles Nivel 2 Inicial</li>
+             <li><input type="checkbox" id="chk3" onchange="jf_calcular();"/>Office 1</li>
+             <li><input type="checkbox" id="chk4" onchange="jf_calcular();"/>Office 2</li>
+             <li><input type="checkbox" id="chk5" onchange="jf_calcular();"/>Redes Intermedio</li>
+         </ul>
+    </div>
+    <div><label>Importe Cuota</label><input class="textbox" type="text" id="importeCuota" size="6" readonly/><span>del 15% aplicado</span></div>
+</body>
+</html>

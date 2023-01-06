@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            font-family: Verdana;
+        }
+
+        form div {
+            padding: 1px;
+        }
+
+        label {
+            float: left;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+
+    <form name="form1" action="grabar_datos.asp" method="post">
+
+        <div><label>Apellido</label><input type="text" name="apellido" maxlength="30" size="20" tabindex="1" /></div>
+        <div><label>Nombre</label><input type="text" name="nombre" maxlength="30" size="20" tabindex="2" /></div>
+
+        <div>
+            <label>Sexo</label>
+            F<input type="radio" name="sexo" value="F" />
+            M<input type="radio" name="sexo" value="M" />
+        </div>
+
+        <div>
+            <label>Tipo de Fotografia</label>
+            Retrato<input type="checkbox" name="foto" />
+            Paisaje<input type="checkbox" name="paisaje" />
+            Foto Urbana<input type="checkbox" name="urbana" />
+        </div>
+
+        <div>
+            <label>Camara</label>
+
+            <select name="camara">
+                <option value="">Seleccione..</option>
+                <option value="CAN">Cannon</option>
+                <option value="NIK">Nikon</option>
+                <option value="FUJ">Fuji</option>
+            </select>
+        </div>
+
+        <div>
+           <label>Comentarios</label>
+
+            <textarea maxlength="255" cols="20" rows="3"></textarea>
+        </div>
+
+
+
+        <input type="submit" />
+
+    </form>
+
+
+</body>
+</html>

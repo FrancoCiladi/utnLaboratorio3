@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            font-family: Verdana;
+        }
+        div {
+            padding: 10px;
+        }
+        label {
+            float: left;
+            width: 200px;
+        }
+    </style>
+    <script>
+        function jf_calcular() {
+            var Desde;
+            var Hasta;
+            var ImporteFinal;
+            var Periodo;
+
+            Desde = parseInt(document.getElementById("PerDesde").value);
+            Hasta = parseInt(document.getElementById("PerHasta").value);
+
+            Periodo = parseInt((Hasta - Desde) + 1);
+
+
+            if (Periodo <= 3) {
+                ImporteFinal = parseFloat(5.50 * Periodo);
+                document.getElementById("importe").value = ImporteFinal.toFixed(2) + " (5.50$ x Periodo)";
+            }
+            else {
+                ImporteFinal = parseFloat(4.00 * Periodo);
+                document.getElementById("importe").value = ImporteFinal.toFixed(2) + " (4.00$ x Periodo)";
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <label>Periodo Desde</label>
+        <select id="PerDesde" onchange="jf_calcular();">
+            <option value="1">202201</option>
+            <option value="2">202202</option>
+            <option value="3">202203</option>
+            <option value="4">202204</option>
+            <option value="5">202205</option>
+        </select>
+    </div>
+    <div>
+        <label>Periodo Hasta</label>
+        <select id="PerHasta" onchange="jf_calcular();">
+            <option value="1">202201</option>
+            <option value="2">202202</option>
+            <option value="3">202203</option>
+            <option value="4">202204</option>
+            <option value="5">202205</option>
+        </select>
+    </div>
+    <div><label>Importe</label><input type="text" id="importe" disabled/></div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .TextoEnLinea {
+            display: inline  
+        }
+
+        .TextoEnbloque {
+            display: block;
+            color: red;
+        }
+        .invisible {
+            display: none;
+        }
+        .menu {
+            background-color:#253556;
+            padding:10px;
+        }
+        .menu ul {
+            display:inline;
+        }
+        .menu li{
+            color:#ffffff;
+            display:inline;
+            margin-left:25px;
+            padding:5px 20px 5px 20px;
+        }
+        .seleccionado {
+            background-color: #0ad266;
+            padding:10px;
+        }
+        .menu a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        .menu a:hover{
+            text-decoration:none;
+            color:blue;
+        }
+        .mensaje {
+            background-color:#ff3300;
+            color:#ffffff;
+            width:150px;
+            padding:15px;
+            font-size:20px;
+        }
+    </style>
+    <script>
+        var estado = "V";
+
+        function jf_ver() {
+            var objetoEtiqueta;
+            var objetoBoton;
+            
+
+
+            objetoEtiqueta = document.getElementById("mensaje");
+            objetoBoton = document.getElementById("boton");
+
+
+
+            if (estado == "V")
+            {
+                objetoEtiqueta.className = "TextoEnbloque";
+                objetoBoton.innerHTML = "OCULTAR";
+                estado = "O";
+            }
+            else
+            {
+                objetoEtiqueta.className = "invisible";
+                objetoBoton.innerHTML = "VER";
+                estado = "V";
+            }
+
+
+
+        }
+        function jf_cerrarMensaje() {
+            document.getElementById("mensaje1").className = "invisible";
+        }
+    </script>
+</head>
+<body>
+    <span class="TextoEnLinea">Hola</span>
+    <span class="TextoEnLinea">mi nombre es Simona</span>
+
+    <span class="TextoEnbloque">Hola</span>
+    <span class="TextoEnbloque">mi nombre es Simona</span>
+    <span class="invisible" id="mensaje">HOLA</span>
+    <button onclick="jf_ver();" id="boton">VER</button>
+
+    <hr />
+    <div class="menu">
+        <ul>
+            <li><a href="#">Iniciales</a></li>
+            <li><a href="#">Hyperlink</a></li>
+            <li><a href="#">Tablas</a></li>
+            <li><a href="#">Estilos</a></li>
+            <li><a href="#">Listas</a></li>
+            <li class="seleccionado"><a href="#">CSS 1</a></li>
+            <li><a href="#">CSS 2</a></li>
+        </ul>
+    </div>
+    <hr />
+
+    <div class="mensaje" id="mensaje1">Ver Mensaje <a href="#" onclick="jf_cerrarMensaje();">[x]</a></div>
+</body>
+</html>
